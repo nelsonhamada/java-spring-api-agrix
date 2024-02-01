@@ -62,7 +62,6 @@ public class GeneralControllerAdvice {
    */
   @ExceptionHandler
   public ResponseEntity<String> handleGeneric(RuntimeException e) {
-    System.out.println("-DENTRO DO EXCEPTION " + e);
     return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Erro interno!");
   }
 }
