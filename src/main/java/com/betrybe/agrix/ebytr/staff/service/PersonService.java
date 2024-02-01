@@ -41,7 +41,7 @@ public class PersonService implements UserDetailsService {
   /**
    * Returns a person for a given username.
    */
-  public Person getPersonByUsername(String username) {
+  public Person loadUserByUsername(String username) {
     Optional<Person> person = personRepository.findByUsername(username);
 
     if (person.isEmpty()) {
@@ -60,12 +60,5 @@ public class PersonService implements UserDetailsService {
 
     person.setPassword(hashedPassword);
     return personRepository.save(person);
-  }
-
-  @Override
-  public UserDetails loadUserByUsername(String username) throws PersonNotFoundException {
-    System.out.println("FindByUserName " + username);
-    return personRepository.findByUsername(username)
-        .orElseThrow(PersonNotFoundException::new);
   }
 }
