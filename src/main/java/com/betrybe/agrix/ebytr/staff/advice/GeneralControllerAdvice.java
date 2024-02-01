@@ -1,5 +1,6 @@
 package com.betrybe.agrix.ebytr.staff.advice;
 
+import com.betrybe.agrix.ebytr.staff.exception.PersonNotFoundException;
 import com.betrybe.agrix.ebytr.staff.service.exceptions.CropNotFound;
 import com.betrybe.agrix.ebytr.staff.service.exceptions.FarmNotFound;
 import com.betrybe.agrix.ebytr.staff.service.exceptions.FertilizerNotFound;
@@ -47,6 +48,12 @@ public class GeneralControllerAdvice {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fertilizante não encontrado!");
   }
 
+
+  @ExceptionHandler(PersonNotFoundException.class)
+  public ResponseEntity<String> handlePersonNotFound(PersonNotFoundException e) {
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Pessoa não encontrada");
+  }
+
   /**
    * Handle generic response entity.
    *
@@ -55,6 +62,7 @@ public class GeneralControllerAdvice {
    */
   @ExceptionHandler
   public ResponseEntity<String> handleGeneric(RuntimeException e) {
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno!");
+    System.out.println("-DENTRO DO EXCEPTION " + e);
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Erro interno!");
   }
 }

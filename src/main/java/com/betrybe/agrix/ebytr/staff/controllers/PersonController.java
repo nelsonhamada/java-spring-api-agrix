@@ -1,5 +1,6 @@
 package com.betrybe.agrix.ebytr.staff.controllers;
 
+import com.betrybe.agrix.ebytr.staff.controllers.dto.PersonCreationDto;
 import com.betrybe.agrix.ebytr.staff.controllers.dto.PersonDto;
 import com.betrybe.agrix.ebytr.staff.entity.Person;
 import com.betrybe.agrix.ebytr.staff.service.PersonService;
@@ -33,12 +34,12 @@ public class PersonController {
   /**
    * Create person response entity.
    *
-   * @param person the person
+   * @param personCreationDto the person
    * @return the response entity
    */
   @PostMapping()
-  public ResponseEntity<PersonDto> createPerson(@RequestBody Person person) {
-    Person newPerson = personService.create(person);
+  public ResponseEntity<PersonDto> createPerson(@RequestBody PersonCreationDto personCreationDto) {
+    Person newPerson = personService.create(personCreationDto.toPerson());
     return ResponseEntity.status(HttpStatus.CREATED).body((PersonDto.personDto(newPerson)));
   }
 
