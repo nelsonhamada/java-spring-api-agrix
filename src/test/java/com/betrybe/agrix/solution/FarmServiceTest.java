@@ -4,6 +4,7 @@ import com.betrybe.agrix.ebytr.staff.entity.Farm;
 import com.betrybe.agrix.ebytr.staff.entity.Person;
 import com.betrybe.agrix.ebytr.staff.service.FarmService;
 import com.betrybe.agrix.ebytr.staff.service.exceptions.FarmNotFound;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -39,13 +40,22 @@ public class FarmServiceTest {
   }
 
   @Test
-  @DisplayName("Should get Farm by ID and by Username.")
+  @DisplayName("Should get Farm by ID.")
   public void getFarmByIdAndByUsernameTest() {
     Farm farmById = farmService.getFarmById(farm.getId());
     Assertions.assertEquals(farmById.getId(), farm.getId());
     Assertions.assertEquals(farmById.getName(), farm.getName());
     Assertions.assertEquals(farmById.getSize(), farm.getSize());
   }
+
+  @Test
+  @DisplayName("Should return a List with all farms.")
+  public void getAllFarms() {
+    List<Farm> allFarms = farmService.getAllFarms();
+    int expectedSize = 1;
+    Assertions.assertEquals(expectedSize, allFarms.size());
+  }
+
 
   @Test
   @DisplayName("Should throws an error when Farm doesn't exists")
