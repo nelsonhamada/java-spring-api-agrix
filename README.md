@@ -2,14 +2,18 @@
 Foi desenvolvido uma API em Java que utiliza Spring Boot, Spring Web, Spring Security e Sprint Data JPA com integra a um bando de dados SQL
 e gerencia fazendas e plantações. Na aplicação você cria um usuário com "username", "password", "role" que é persistido no banco de dados e 
 encripitado pelo JWT efetua o login e dependendo da seu nível definido em "role" tem acesso a um CRUD onde você pode adicionar, remover, editar
-ou deletar fazendas e suas devidas plantações.
+ou deletar fazendas e suas devidas plantações. A aplicação utiliza do sistema de integração contínua para otimização dos testes e maior segurança do código.
 
 ## Tecnologias Utilizadas:
 - Docker;
 - MySQL;
+- Postgres(Deploy no fly.io)
 - Spring Framework
 - JUnit;
-- GitHub Actions
+- Continuous Integration, Continuous Delivery (CI/CD) com GitHub actions
+
+  >Nota: Na branch "deploy" algumas configurações estão diferentes em application.properties e nos arquivos Docker devido à necessidade de adaptar a aplicação
+  para utilizar o Postgres, pois a plataforma Fly.io não tem suporte para MySQL.
 
 ## Comandos Úteis
 Para rodar a aplicação em sua máquina clone o repositório:
