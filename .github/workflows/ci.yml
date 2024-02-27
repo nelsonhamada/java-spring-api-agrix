@@ -1,0 +1,19 @@
+name: Agrix application
+
+on: [push, pull_request]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Access repository
+        uses: actions/checkout@v3
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          distributions: 'temurin'
+          java-version: '17'
+      - name: Run tests
+        run: mvn clean test
+      
